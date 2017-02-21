@@ -22,19 +22,19 @@ class SDU:
                      'Referer': 'http://yjs.zjut.edu.cn/yjssql_xxjhpt/index.asp?serviceType=degreeQualification-Edit',
                      'Host':'yjs.zjut.edu.cn'
         }
-        # ¿Î³ÌÃû
+        # è¯¾ç¨‹å
         self.one = []
-        # ¿Î³ÌÀàĞÍ
+        # è¯¾ç¨‹ç±»å‹
         self.two= []
         self.two_1=[]
-        # Ñ§·Ö
+        # å­¦åˆ†
         self.three=[]
         self.three_1=[]
-        # ³É¼¨
+        # æˆç»©
         self.four=[]
-        # ³É¼¨2
+        # æˆç»©2
         self.five=[]
-        # ³É¼¨×ªÎª¼¨µã
+        # æˆç»©è½¬ä¸ºç»©ç‚¹
         self.five_1=[]
         self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cookies))
 
@@ -64,10 +64,10 @@ class SDU:
                     i+=1
 
     def getGrades(self):
-        # »ñµÃ±¾Ñ§ÆÚ³É¼¨Ò³Ãæ
+        # è·å¾—æœ¬å­¦æœŸæˆç»©é¡µé¢
         page = self.getPage()
         output=[]
-        # ÕıÔòÆ¥Åä
+        # æ­£åˆ™åŒ¹é…
         page2=re.findall('<table.*?>(.*?)</table>',page, re.S)
         myItems = re.findall('<tr.*?<td.*?>(.*?)</td>.*?<td.*?>(.*?)</td>.*?<td.*?<td.*?>(.*?)</td>.*?<td.*?<td.*?<td.*?<td.*?>(.*?)</td>.*?<td.*?</tr>', page2[1], re.S)
         for item in myItems:
@@ -85,16 +85,16 @@ class SDU:
         # self.getGrade()
 
     def getGrade(self):
-        # ¼ÆËã×Ü¼¨µã
+        # è®¡ç®—æ€»ç»©ç‚¹
         sum = 0.0
-        member=0.0#·Ö×Ó
-        denominator = 0.0#·ÖÄ¸
+        member=0.0#åˆ†å­
+        denominator = 0.0#åˆ†æ¯
 
         length=len(self.five)
         for i in range(0,length):
-            if self.two[i+1]==u'Ñ§Î»¿Î':
+            if self.two[i+1]==u'å­¦ä½è¯¾':
                 self.two_1.append(0.6)
-            elif self.two[i+1]==u'Ñ¡ĞŞ¿Î':
+            elif self.two[i+1]==u'é€‰ä¿®è¯¾':
                 self.two_1.append(0.25)
             else:
                 self.two_1.append(0.15)
@@ -103,13 +103,13 @@ class SDU:
             self.three_1.append(float(self.three[i+1]))
 
         for i in range(0,length):
-            if self.five[i]==u'ÓÅ' or self.five[i]==u'ÓÅĞã':
+            if self.five[i]==u'ä¼˜' or self.five[i]==u'ä¼˜ç§€':
                 self.five_1.append(4.5)
-            elif self.five[i]==u'Á¼' or self.five[i]==u'Á¼ºÃ':
+            elif self.five[i]==u'è‰¯' or self.five[i]==u'è‰¯å¥½':
                 self.five_1.append(3.5)
-            elif self.five[i]==u'ÖĞ' or self.five[i]==u'ÖĞµÈ':
+            elif self.five[i]==u'ä¸­' or self.five[i]==u'ä¸­ç­‰':
                 self.five_1.append(2.5)
-            elif self.five[i]==u'¼°' or self.five[i]==u'¼°¸ñ':
+            elif self.five[i]==u'åŠ' or self.five[i]==u'åŠæ ¼':
                 self.five_1.append(1.5)
             else:
                 a=int(self.five[i])#2017-2-19 12:15:52
@@ -127,6 +127,6 @@ class SDU:
 
 
 if __name__ == "__main__":
-    sdu = SDU(2111512131,624897)
+    sdu = SDU(studentid,password)
     sdu.getGrades()
     print sdu.getGrade()
