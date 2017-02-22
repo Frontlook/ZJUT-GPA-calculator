@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>560</width>
-    <height>269</height>
+    <height>289</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -89,6 +89,19 @@
      <width>401</width>
      <height>251</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>264</y>
+     <width>321</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>* 若无响应，则密码或学号错误，本人比较懒，口头提示框。</string>
    </property>
   </widget>
  </widget>
